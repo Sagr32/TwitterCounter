@@ -19,7 +19,7 @@ class MainRepositoryImpl @Inject constructor(
 
     override fun postTweet(tweetText: String): Flow<ApiStatus<TweetResponse>> {
         return flow {
-            emit(ApiStatus.Loading()) // Emit loading state
+            emit(ApiStatus.Loading())
             try {
                 val response = twitterService.postTweet(TweetBody(tweetText), )
                 if (response.isSuccessful) {

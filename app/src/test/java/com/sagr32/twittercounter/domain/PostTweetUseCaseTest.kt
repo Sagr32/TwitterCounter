@@ -4,12 +4,9 @@ import com.sagr32.twittercounter.domain.repositories.MainRepository
 import com.sagr32.twittercounter.domain.useCases.PostTweetUseCase
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
 
-// Assuming that the package and imports are correct for your project setup
 
 class PostTweetUseCaseTest {
 
@@ -18,7 +15,6 @@ class PostTweetUseCaseTest {
 
     @Before
     fun setUp() {
-        // Initialize the mock repository and use case before each test
         mainRepository = mock(MainRepository::class.java)
         postTweetUseCase = PostTweetUseCase(mainRepository)
     }
@@ -32,6 +28,6 @@ class PostTweetUseCaseTest {
         postTweetUseCase(tweetText)
 
         // Then
-        verify(mainRepository).postTweet(tweetText) // Verify that postTweet was called with the correct parameter
+        verify(mainRepository).postTweet(tweetText)
     }
 }
