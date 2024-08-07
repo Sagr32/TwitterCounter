@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
 }
