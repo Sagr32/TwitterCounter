@@ -1,11 +1,9 @@
 package com.sagr32.twittercounter.presentation.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.ui.AppBarConfiguration
 import com.sagr32.counterview.presentation.TweetCounter
 import com.sagr32.twittercounter.R
 import com.sagr32.twittercounter.data.enum.ToastStatus
@@ -99,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                     is ApiStatus.Error -> {
                         Utils.showCustomToast(
                             this@MainActivity,
-                            "Error posting tweet: ${status}",
+                            " ${status.message}",
                             ToastStatus.ERROR
                         )
                         binding.tvPostTweet.text = getString(R.string.post_tweet)

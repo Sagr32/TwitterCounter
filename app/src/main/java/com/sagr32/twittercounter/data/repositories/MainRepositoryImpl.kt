@@ -28,7 +28,7 @@ class MainRepositoryImpl @Inject constructor(
                     val errorResponse = response.errorBody()?.let {
                         parseErrorResponse(it.string())
                     }
-                    emit(ApiStatus.Error(errorResponse?.detail ?: "Error: ${response.code()} ${response.message()}"))
+                    emit(ApiStatus.Error(errorResponse?.detail ?: response.message()))
                 }
             } catch (e: Exception) {
                 emit(ApiStatus.Error(e.message ?: "Unknown error"))
