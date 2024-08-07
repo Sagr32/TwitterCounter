@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object ComponentAppModule {
 
     @Provides
     @Singleton
@@ -46,14 +46,5 @@ object AppModule {
         return CheckTweetValidityUseCase(counterRepository)
     }
 
-//    @Provides
-//    @ActivityScoped // or FragmentScoped if used in Fragment
-//    fun provideTweetViewModel(
-//        @ActivityContext context: Context
-//    ): TweetViewModel {
-//        return ViewModelProvider(
-//            context as ViewModelStoreOwner,
-//            ViewModelProvider.AndroidViewModelFactory.getInstance(context as Application)
-//        )[TweetViewModel::class.java]
-//    }
+
 }

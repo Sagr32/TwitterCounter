@@ -34,7 +34,19 @@ class MainActivity : AppCompatActivity() {
                 tweetCounter.clearText()
             }
             tvPostTweet.setOnClickListener {
-                Utils.showCustomToast(this@MainActivity, "", ToastStatus.SUCCESS)
+                if (tweetCounter.isTweetValid()) {
+                    Utils.showCustomToast(
+                        this@MainActivity,
+                        "Tweet posted successfully",
+                        ToastStatus.SUCCESS
+                    )
+                } else {
+                    Utils.showCustomToast(
+                        this@MainActivity,
+                        "Tweet exceeds the character limit",
+                        ToastStatus.ERROR
+                    )
+                }
             }
         }
     }

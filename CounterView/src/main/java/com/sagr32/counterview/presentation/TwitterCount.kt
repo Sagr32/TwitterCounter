@@ -74,5 +74,8 @@ class TweetCounter @JvmOverloads constructor(
         return editText.text.toString()
     }
 
+    fun isTweetValid(): Boolean {
+        return viewModel.state.value.isValid
+    }
 
 }

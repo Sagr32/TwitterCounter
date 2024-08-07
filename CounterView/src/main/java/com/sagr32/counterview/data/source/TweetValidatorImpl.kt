@@ -8,6 +8,9 @@ class TweetValidatorImpl @Inject constructor() : TweetValidator {
     private val twitterCharacterLimit = 280
 
     private fun twitterCounter(text: String): Pair<Int, Boolean> {
+        if (text.isEmpty()) {
+            return Pair(0, false) // Empty text should be considered invalid
+        }
         val urlRegex = Regex("https?://[\\w/\\-\\.\\?\\=]+")
         val mentionRegex = Regex("@\\w+")
         val hashtagRegex = Regex("#\\w+")

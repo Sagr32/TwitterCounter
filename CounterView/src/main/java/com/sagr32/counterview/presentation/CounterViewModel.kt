@@ -23,7 +23,7 @@ class TweetViewModel @Inject constructor(
         viewModelScope.launch {
             val length = calculateTweetLengthUseCase(text)
             val isValid = checkTweetValidityUseCase(text)
-            val remainingCharacters = 280 - length
+            val remainingCharacters = TWITTER_MAX_CHAR - length
             _state.value = TweetState(
                 tweetText = text,
                 remainingCharacters = remainingCharacters,
@@ -31,5 +31,8 @@ class TweetViewModel @Inject constructor(
                 typedCharacters = length
             )
         }
+    }
+    companion object {
+        const val TWITTER_MAX_CHAR = 280
     }
 }
