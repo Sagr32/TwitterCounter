@@ -34,7 +34,16 @@ class MainActivity : AppCompatActivity() {
     private fun setUpOnClicks() {
         binding.apply {
             tvCopyText.setOnClickListener {
-                Utils.copyToClipboard(this@MainActivity, tweetCounter.getTweetText())
+                val tweetText = tweetCounter.getTweetText()
+                if (tweetText.isNotBlank()) {
+                    Utils.copyToClipboard(this@MainActivity, tweetText)
+                } else {
+                    Utils.showCustomToast(
+                        this@MainActivity,
+                        getString(R.string.tweet_is_empty),
+                        ToastStatus.ERROR
+                    )
+                }
             }
             tvClearText.setOnClickListener {
                 tweetCounter.clearText()
@@ -49,9 +58,11 @@ class MainActivity : AppCompatActivity() {
                             ToastStatus.ERROR
                         )
                     }
+
                     tweetCounter.isTweetValid() -> {
                         viewModel.postTweet(tweetText)
                     }
+
                     else -> {
                         Utils.showCustomToast(
                             this@MainActivity,
@@ -68,9 +79,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.tweetStatus.collect { status ->
                 when (status) {
+                    is ApiStatus.Initial -> {
+                    }
+
                     is ApiStatus.Loading -> {
                         binding.tvPostTweet.text = getString(R.string.posting)
                     }
+
                     is ApiStatus.Success -> {
                         Utils.showCustomToast(
                             this@MainActivity,
@@ -78,7 +93,9 @@ class MainActivity : AppCompatActivity() {
                             ToastStatus.SUCCESS
                         )
                         binding.tvPostTweet.text = getString(R.string.post_tweet)
+                        tweetCounter.clearText()
                     }
+
                     is ApiStatus.Error -> {
                         Utils.showCustomToast(
                             this@MainActivity,

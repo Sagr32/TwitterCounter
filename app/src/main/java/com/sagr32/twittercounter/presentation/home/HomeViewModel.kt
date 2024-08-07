@@ -16,7 +16,7 @@ class HomeViewModel @Inject constructor(
     private val postTweetUseCase: PostTweetUseCase
 ) : ViewModel() {
 
-    private val _tweetStatus = MutableStateFlow<ApiStatus<TweetResponse>>(ApiStatus.Loading())
+    private val _tweetStatus = MutableStateFlow<ApiStatus<TweetResponse>>(ApiStatus.Initial())
     val tweetStatus: StateFlow<ApiStatus<TweetResponse>> get() = _tweetStatus
 
     fun postTweet(text: String) {

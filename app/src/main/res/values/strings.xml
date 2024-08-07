@@ -54,4 +54,5 @@
     <string name="posting">Posting...</string>
     <string name="tweet_posted_successfully">Tweet posted successfully</string>
     <string name="twitter_character_count">Twitter character count</string>
+    <string name="tweet_is_empty">Tweet is empty</string>
 </resources>

@@ -2,4 +2,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="typed_characters">%s / 280</string>
+    <string name="characters_typed">Characters Typed</string>
+    <string name="characters_remaining">Characters Remaining</string>
+    <string name="start_typing_you_can_enter_up_to_280_characters">Start typing! You can enter up to 280 characters</string>
 </resources>
