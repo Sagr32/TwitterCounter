@@ -49,4 +49,9 @@
     <string name="clear_text">Clear Text</string>
     <string name="post_tweet">Post Tweet</string>
     <string name="copied">Copied</string>
+    <string name="tweet_cannot_be_empty">Tweet cannot be empty</string>
+    <string name="tweet_exceeds_the_character_limit">Tweet exceeds the character limit</string>
+    <string name="posting">Posting...</string>
+    <string name="tweet_posted_successfully">Tweet posted successfully</string>
+    <string name="twitter_character_count">Twitter character count</string>
 </resources>

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:text="Twitter character count"
+            android:text="@string/twitter_character_count"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"

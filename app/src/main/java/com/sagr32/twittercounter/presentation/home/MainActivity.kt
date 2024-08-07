@@ -40,15 +40,25 @@ class MainActivity : AppCompatActivity() {
                 tweetCounter.clearText()
             }
             tvPostTweet.setOnClickListener {
-                if (tweetCounter.isTweetValid()) {
-                    viewModel.postTweet(tweetCounter.getTweetText())
-
-                } else {
-                    Utils.showCustomToast(
-                        this@MainActivity,
-                        "Tweet exceeds the character limit",
-                        ToastStatus.ERROR
-                    )
+                val tweetText = tweetCounter.getTweetText()
+                when {
+                    tweetText.isBlank() -> {
+                        Utils.showCustomToast(
+                            this@MainActivity,
+                            getString(R.string.tweet_cannot_be_empty),
+                            ToastStatus.ERROR
+                        )
+                    }
+                    tweetCounter.isTweetValid() -> {
+                        viewModel.postTweet(tweetText)
+                    }
+                    else -> {
+                        Utils.showCustomToast(
+                            this@MainActivity,
+                            getString(R.string.tweet_exceeds_the_character_limit),
+                            ToastStatus.ERROR
+                        )
+                    }
                 }
             }
         }
@@ -59,28 +69,23 @@ class MainActivity : AppCompatActivity() {
             viewModel.tweetStatus.collect { status ->
                 when (status) {
                     is ApiStatus.Loading -> {
-                        // Show loading indicator if needed
-                        binding.tvPostTweet.text = "Posting..."
+                        binding.tvPostTweet.text = getString(R.string.posting)
                     }
-
                     is ApiStatus.Success -> {
-                        // Handle success
                         Utils.showCustomToast(
                             this@MainActivity,
-                            "Tweet posted successfully",
+                            getString(R.string.tweet_posted_successfully),
                             ToastStatus.SUCCESS
                         )
-                        binding.tvPostTweet.text = "Post Tweet"
+                        binding.tvPostTweet.text = getString(R.string.post_tweet)
                     }
-
                     is ApiStatus.Error -> {
-                        // Handle error
                         Utils.showCustomToast(
                             this@MainActivity,
                             "Error posting tweet: ${status}",
                             ToastStatus.ERROR
                         )
-                        binding.tvPostTweet.text = "Post Tweet"
+                        binding.tvPostTweet.text = getString(R.string.post_tweet)
                     }
                 }
             }
